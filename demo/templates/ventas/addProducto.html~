@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>Agregar Producto</title>
+</head>
+<body>
+	<form action="." method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Agregar">
+		<input type="reset" value="Limpiar">
+		<br>
+		Se guardo ??? {{ guardado }}
+		<br>
+		Informacion de Validacion: 
+		{{informacion}}
+	</form>
+</body>
+</html>
+
