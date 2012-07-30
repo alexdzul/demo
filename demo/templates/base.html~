@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %} Titulo Base {% endblock %}</title>
+</head>
+<body>
+<header>
+	<h1>Projecto Demo (Venta de Productos ) </h1>
+	<nav>
+		<a href="{% url vista_principal %}">Inicio</a>
+		<a href="{% url vista_productos %}">Productos</a>
+		<a href="{% url vista_contacto %}">Contacto</a>
+		<a href="{% url vista_about %}">Acerca de ...</a>
+	</nav>
+</header>
+<section>
+	{% block content %}
+	{% endblock %}
+</section>
+</body>
+</html>

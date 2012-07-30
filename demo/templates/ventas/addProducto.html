@@ -1,8 +1,6 @@
-<html>
-<head>
-<title>Agregar Producto</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %} Agregar Producto {% endblock %}
+{% block content %}
 	<form action="." method="POST">
 		{% csrf_token %}
 		{{ form.as_p }}
@@ -11,6 +9,6 @@
 	</form>
 <br>
 	{{ informacion }}
-</body>
-</html>
-
+<br>
+<a href="{% url vista_productos %}">Regresar a la lista de Productos </a>
+{% endblock %}

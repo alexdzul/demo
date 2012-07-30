@@ -1,6 +1,7 @@
-<html>
-<head><title>Contactanos</title></head>
-<body>
+{% extends 'base.html'%}
+{% block title %}Contactanos {% endblock %}
+{% block content %}
+<br>
 {% if info_enviado %}
 	Gracias por enviar un comentario, nos pondremos en contacto contigo.
 	<br>
@@ -15,5 +16,4 @@
 	<input type="submit" value="submit"/>
 	</form>
 {% endif %}
-</body>
-</html>
+{% endblock %}

@@ -1,0 +1,62 @@
+*
+{
+	font-size:16px;
+}
+
+header h1{
+	font-family: Helvetica;
+	font-size:2em;
+}
+
+header img{
+	float: right ;
+}
+
+nav{
+	background : dodgerblue;
+	/*-moz-border-radius:25px;/* Firefox 3.6 and earlier */
+	/*-webkit-border-radius:25px;
+	border-radius:5px;*/
+	height:auto;
+	margin:0px;
+}
+
+nav a{
+	color: white;
+	font-family: 'Italica';
+	font-size:1em;
+	padding: 20px;
+	text-transform: uppercase;
+}
+
+nav a:link{
+	text-decoration: none;
+}
+
+nav a:hover{
+	color: midnightblue;
+}
+
+body{
+	background: mintcream;
+	margin:0 auto;	
+	width:80%; /*gdzul*/
+}
+
+section{
+	background: lightblue;
+	box-shadow: 10px 10px 5px #888;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	padding: 20px; 
+	height: 400px;
+}
+
+section h1{
+	font-family: Sans-Serif;
+}
+
+section a{
+	font-size: 20px;
+	border-radius: 5px solid;
+}

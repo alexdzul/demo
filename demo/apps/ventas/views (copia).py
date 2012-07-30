@@ -5,9 +5,9 @@ from demo.apps.ventas.models import producto
 
 
 def add_product_view(request):
-	info = "Inicializando" 
 	if request.method == "POST":
 		form = addProductForm(request.POST)
+		info = "Inicializando"
 		if form.is_valid():
 			nombre = form.cleaned_data['nombre']
 			descripcion = form.cleaned_data['descripcion']
@@ -18,8 +18,13 @@ def add_product_view(request):
 			p.save() # Guardar la informacion
 			info = "Se guardo satisfactoriamente!!!!!"
 		else:
-			info = "informacion con datos incorrectos"			
-	form = addProductForm()
-	ctx = {'form':form, 'informacion':info}
-	return render_to_response('ventas/addProducto.html',ctx,context_instance=RequestContext(request))
+			info = "informacion con datos incorrectos"
+		form = addProductForm()
+		ctx = {'form':form, 'informacion':info}
+		return render_to_response('ventas/addProducto.html',ctx,context_instance=RequestContext(request))
+			
+	else: # GET 
+		form = addProductForm()
+		ctx = {'form':form}
+		return render_to_response('ventas/addProducto.html',ctx,context_instance=RequestContext(request))
 

@@ -48,12 +48,12 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__),'media/'))
+MEDIA_ROOT = ''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/media/'
+MEDIA_URL = ''
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -155,16 +155,11 @@ LOGGING = {
     }
 }
 
-# Configuracion del correo
 
-EMAIL_HOST = "smtp.gmail.com"
+
+ # Aqui va la configuracion del servidor de correo (GMAIL)
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'alexexc2@gmail.com'
-EMAIL_HOST_PASSWORD = '*****'
+EMAIL_HOST_USER = 'example@gmail.com' # alexexc2@gmail.com
+EMAIL_HOST_PASSWORD = 'mipassword' # *******
 EMAIL_USE_TLS = True
-
-
-
-
-
-
