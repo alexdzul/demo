@@ -102,6 +102,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'demo.urls'
 
+#Identificar o definir el perfil de los usuarios
+AUTH_PROFILE_MODULE = 'home.userProfile'
+
+
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'demo.wsgi.application'
 
@@ -122,6 +126,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'demo.apps.ventas',
+    'demo.apps.home', 
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 )
