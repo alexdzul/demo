@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'demo.apps.ventas',
     'demo.apps.home', 
+    'demo.apps.webServices.wsProductos',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
 )

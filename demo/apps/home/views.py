@@ -19,7 +19,7 @@ def about_view(request):
 
 def productos_view(request,pagina):
 	lista_prod = producto.objects.filter(status=True) # Select * from ventas_productos where status = True
-	paginator = Paginator(lista_prod,3) # Cuantos productos quieres por pagina? = 3
+	paginator = Paginator(lista_prod,2) # Cuantos productos quieres por pagina? = 3
 	try:
 		page = int(pagina)
 	except:
