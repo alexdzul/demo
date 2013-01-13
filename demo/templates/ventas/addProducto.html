@@ -4,8 +4,8 @@
 	<form action="." method="POST" enctype="multipart/form-data">
 		{% csrf_token %}
 		{{ form.as_p }}
-		<input type="submit" value="Grabar">
-		<input type="reset" value= "Limpiar">
+		<button type="submit" class="btn btn-small btn-primary">Guardar</button>
+		<button type="reset" class="btn btn-small btn-primary">Limpiar</button>
 	</form>
 <br>
 	{{ informacion }}

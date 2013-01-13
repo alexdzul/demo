@@ -1,33 +1,54 @@
 {% extends 'base.html' %}
 {% block title %} Lista de Productos {% endblock %}
 {%block content %}
-<h1>Catalogo de Productos:</h1>
-<br>
+<h3>Catalogo de Productos:</h3>
 {% if user.is_authenticated %}
 <a href="{% url vista_agregar_producto %}">Agregar nuevo</a><br>
 {% endif %}
+<br>
 {% if productos %}
-	{% for p in productos %}
-		<p><a href="/producto/{{p.id}}/">{{p.nombre}}</a></p>
+    <table class="table table-hover">
+    	<thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Precio</th>
+                  <th>Stock</th>
+                </tr>
+        </thead>
+    {% for p in productos %}
+     	<tbody>
+     		<tr>
+				<td>{{ p.nombre }}</td>
+				<td>{{ p.precio }}</td>
+				<td>{{ p.stock }}</td>
+				<td><a class="btn" href="/producto/{{p.id}}/"><i class="icon-search"></i>   Ver</a></td>
+				<td><a class="btn" href="#"><i class="icon-shopping-cart"></i> Comprar</a></td>
+			</tr>
+		</tbody>
 	{% endfor %}
+    </table>
+	
 {% else %}
 	<h2>No existen productos activos a la venta :( </h2>
 {% endif %}
-<br><br><br>
+<br>
 {% if productos %}
-		<a href="/productos/page/1"> << </a>
+    <div class="pagination">
+    <ul>
+		<li><a href="/productos/page/1"> << </a></li>
 	{% if productos.has_previous %}
-		<a href="/productos/page/{{productos.previous_page_number }}/"> Prev </a>
+		<li><a href="/productos/page/{{productos.previous_page_number }}/"> Prev </a></li>
 	{% else %}
-		<a href="#"> Prev </a>
+		<li><a href="#"> Prev </a></li>
 	{% endif %}
 	{% if productos.has_next %}
-		<a href="/productos/page/{{productos.next_page_number }}/"> Next </a>
+		<li><a href="/productos/page/{{productos.next_page_number }}/"> Next </a></li>
 	{% else %}
-		<a href="#"> Next </a>
+		<li><a href="#"> Next </a></li>
 	{% endif %}
-		<a href="/productos/page/{{productos.paginator.num_pages }} "> >> </a>
-<br><br><br>
+		<li><a href="/productos/page/{{productos.paginator.num_pages }} "> >> </a><li>
+	</ul>
+	</div>
 	<h4> Página {{ productos.number }} de {{ productos.paginator.num_pages }}</h4>
 {% endif %}
 {% endblock %}

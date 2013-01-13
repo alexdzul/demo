@@ -1,29 +1,83 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>{% block title %} Titulo Base {% endblock %}</title>
-	{% block css %}<link rel="stylesheet" href="/media/css/estilo.css">{% endblock %}
-</head>
-<body>
-<header>
-	<img src="/media/images/django.gif"/>
-	<h1>Proyecto Demo (Venta de Productos ) </h1>
-	<nav>
-		<a href="{% url vista_principal %}">Inicio</a>
-		<a href="/productos/page/1/">Productos</a>
-		<a href="{% url vista_contacto %}">Contacto</a>
-		<a href="{% url vista_about %}">Acerca de ...</a>
-		{% if user.is_authenticated %}
-		<a href="{% url vista_logout %}"> Cerrar Sesion </a>
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>Proyecto Demo</title>
+    <!-- Le styles -->
+    <link href="/media/bootstrap/css/bootstrap.css" rel="stylesheet">
+     <link href="/media/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+     <script src="/media/js/jquery.js"></script>
+    <script src="/media/bootstrap/js/bootstrap.js"></script>
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="{% url vista_principal %}">Proyecto Ventas </a>
+            {% if user.is_authenticated %}
+            <p class="navbar-text pull-right">
+              Logged in as {{ user.username }}
+            </p>
+            {% endif %}
+            <ul class="nav">
+              <li><a href="/productos/page/1/">Productos</a></li>
+              <li><a href="{% url vista_contacto %}">Contacto</a></li>
+              <li><a href="{% url vista_about %}">Acerca de ...</a></li>
+              {% if user.is_authenticated %}
+				<li><a href="{% url vista_logout %}"> Cerrar Sesion </a></li>
 		{% else %}
-		<a href="{% url vista_login %}"> Login </a>
+				<li><a href="{% url vista_login %}"> Login </a></li>
 		{% endif %}
-	</nav>
-</header>
-<section>
-	{% block content %}
-	{% endblock %}
-</section>
-</body>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span9">
+          <div class="hero-unit">
+            {% block content %}
+            {% endblock%}
+          </div>
+        </div><!--/span-->
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Mi Carrito</li>
+              <br><p align="justify">
+              	Carrito de Super
+              </p>
+            </ul>
+          </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Nuevos Productos</li>
+              <br><p align="justify">
+              	Aquí habrán nuevos productos posterioremente
+              	cargados con jquery.
+              </p>
+            </ul>
+          </div><!--/.well -->
+           <img src="/media/images/django.gif"/>
+        </div><!--/span-->
+      </div><!--/row-->
+      <hr>
+      <footer>
+        <p>&copy; Open Project 2013 </p> 
+      </footer>
+    </div><!--/.fluid-container-->
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+  </body>
 </html>
