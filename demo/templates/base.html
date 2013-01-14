@@ -7,7 +7,7 @@
     <!-- Le styles -->
     <link href="/media/bootstrap/css/bootstrap.css" rel="stylesheet">
      <link href="/media/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-     <script src="/media/js/jquery.js"></script>
+    <script src="/media/js/jquery.js"></script>
     <script src="/media/bootstrap/js/bootstrap.js"></script>
     <style type="text/css">
       body {
@@ -18,6 +18,22 @@
         padding: 9px 0;
       }
     </style>
+    <script type="text/javascript">
+        $(document).on('ready',function(){
+              $.ajax({
+                  type:"GET",
+                  contentType:"application/json; charset=utf-8",
+                  dateType:"json",
+                  url:"/ws/productos/",
+                  success:function(response){
+                          var i = (response.length-1)-2;
+                          for(i;i<=(response.length-1);i++){
+                              $('#ProductosNuevos').append("<li>"+response[i].fields.nombre+"</li>");
+                          }    
+                  }
+              });
+        });
+    </script>
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -60,12 +76,9 @@
             </ul>
           </div><!--/.well -->
           <div class="well sidebar-nav">
-            <ul class="nav nav-list">
+            <ul class="nav nav-list" id="ProductosNuevos">
               <li class="nav-header">Nuevos Productos</li>
-              <br><p align="justify">
-              	Aquí habrán nuevos productos posterioremente
-              	cargados con jquery.
-              </p>
+              
             </ul>
           </div><!--/.well -->
            <img src="/media/images/django.gif"/>
