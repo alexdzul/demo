@@ -3,7 +3,7 @@
 {%block content %}
 <h3>Catalogo de Productos:</h3>
 {% if user.is_authenticated %}
-<a href="{% url vista_agregar_producto %}">Agregar nuevo</a><br>
+<a href="{% url vista_agregar_producto %}" class="btn"><i class="icon-plus"></i> Nuevo</a><br>
 {% endif %}
 <br>
 {% if productos %}
