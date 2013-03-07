@@ -23,6 +23,9 @@
 				<td>{{ p.stock }}</td>
 				<td><a class="btn" href="/producto/{{p.id}}/"><i class="icon-search"></i>   Ver</a></td>
 				<td><a class="btn" href="#"><i class="icon-shopping-cart"></i> Comprar</a></td>
+				{% if user.is_authenticated %}
+					<td><a class="btn" href="/edit/producto/{{p.id}}/"><i class="icon-pencil"></i>  Editar </a></td>
+				{% endif %}				
 			</tr>
 		</tbody>
 	{% endfor %}

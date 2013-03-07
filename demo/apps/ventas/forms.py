@@ -9,5 +9,3 @@ class addProductForm(forms.Form):
 
 	def clean(self):
 		return self.cleaned_data
-
-
