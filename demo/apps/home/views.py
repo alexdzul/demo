@@ -33,7 +33,8 @@ def productos_view(request,pagina):
 
 def singleProduct_view(request,id_prod):
 	prod = producto.objects.get(id=id_prod)
-	ctx = {'producto':prod}
+	cats = prod.categorias.all() # Obteniendo las categorias del producto encontrado
+	ctx = {'producto':prod,'categorias':cats}
 	return render_to_response('home/SingleProducto.html',ctx,context_instance=RequestContext(request))
 
 

@@ -6,6 +6,12 @@
 <p> {{ producto.descripcion }}</p>
 <p> ${{ producto.precio }}</p>
 <p> Cantidad en Existencia: {{ producto.stock }} Unidades </p>
+<br>
+<h5> Categorias:</h5>
+{% for cat in categorias %}
+<span class="label label-info"> {{cat.nombre}}</span>
+{% endfor %}
+<br><br>
 {% if producto.stock > 0 %}
 	<a class="btn btn-primary" href="#"> Comprar Producto </a>
 {% endif %}
