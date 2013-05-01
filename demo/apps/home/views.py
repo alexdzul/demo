@@ -1,8 +1,9 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from demo.apps.ventas.models import producto
-from demo.apps.home.forms import ContactForm, LoginForm
+from demo.apps.home.forms import ContactForm, LoginForm,RegisterForm
 from django.core.mail import EmailMultiAlternatives # Enviamos HTML
+from django.contrib.auth.models import User
 
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
@@ -86,3 +87,21 @@ def login_view(request):
 def logout_view(request):
 	logout(request)
 	return HttpResponseRedirect('/')
+
+def register_view(request):
+	form = RegisterForm()
+	if request.method == "POST":
+		form = RegisterForm(request.POST)
+		if form.is_valid():
+			usuario = form.cleaned_data['username']
+			email = form.cleaned_data['email']
+			password_one = form.cleaned_data['password_one']
+			password_two = form.cleaned_data['password_two']
+			u = User.objects.create_user(username=usuario,email=email,password=password_one)
+			u.save() # Guardar el objeto
+			return render_to_response('home/thanks_register.html',context_instance=RequestContext(request))
+		else:
+			ctx = {'form':form}
+			return 	render_to_response('home/register.html',ctx,context_instance=RequestContext(request))
+	ctx = {'form':form}
+	return render_to_response('home/register.html',ctx,context_instance=RequestContext(request))
