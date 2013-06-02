@@ -39,7 +39,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
-          <a class="brand" href="{% url vista_principal %}">Proyecto Ventas </a>
+          <a class="brand" href="{% url "vista_principal" %}">Proyecto Ventas </a>
             {% if user.is_authenticated %}
             <p class="navbar-text pull-right">
               Logged in as {{ user.username }}
@@ -47,12 +47,12 @@
             {% endif %}
             <ul class="nav">
               <li><a href="/productos/page/1/">Productos</a></li>
-              <li><a href="{% url vista_contacto %}">Contacto</a></li>
-              <li><a href="{% url vista_about %}">Acerca de ...</a></li>
+              <li><a href="{% url "vista_contacto" %}">Contacto</a></li>
+              <li><a href="{% url "vista_about" %}">Acerca de ...</a></li>
               {% if user.is_authenticated %}
-				<li><a href="{% url vista_logout %}"> Cerrar Sesion </a></li>
+				<li><a href="{% url "vista_logout" %}"> Cerrar Sesion </a></li>
 		{% else %}
-				<li><a href="{% url vista_login %}"> Login </a></li>
+				<li><a href="{% url "vista_login" %}"> Login </a></li>
 		{% endif %}
         </div>
       </div>

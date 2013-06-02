@@ -4,6 +4,7 @@ from demo.apps.ventas.models import producto
 from demo.apps.home.forms import ContactForm, LoginForm,RegisterForm
 from django.core.mail import EmailMultiAlternatives # Enviamos HTML
 from django.contrib.auth.models import User
+import django
 
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
@@ -14,8 +15,9 @@ def index_view(request):
 	return render_to_response('home/index.html',context_instance=RequestContext(request))
 
 def about_view(request):
+	version = django.get_version()
 	mensaje = "Esto es un mensaje desde mi vista"
-	ctx = {'msg':mensaje}
+	ctx = {'msg':mensaje,'version':version}
 	return render_to_response('home/about.html',ctx,context_instance=RequestContext(request))
 
 def productos_view(request,pagina):
