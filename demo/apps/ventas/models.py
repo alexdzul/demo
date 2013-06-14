@@ -23,6 +23,10 @@ class producto(models.Model):
 		ruta = "MultimediaData/Producto/%s/%s"%(self.nombre,str(filename))
 		return ruta
 
+	def thumbnail(self):
+		return '<a href="/media/%s"><img src="/media/%s" width=50px heigth=50px/></a>'%(self.imagen,self.imagen)
+
+	thumbnail.allow_tags = True
 
 	nombre		= models.CharField(max_length=100)
 	descripcion	= models.TextField(max_length=300)
