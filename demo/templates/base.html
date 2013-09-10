@@ -69,6 +69,19 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
+              <li class="nav-header">Mi perfil</li>
+              <br><p align="justify">
+              {%if user.is_authenticated %}
+                <p>Bienvenido {{ user }} </p>
+                <img src="{{get_image_profile}}" width="50px" heigth="50px"/>
+              {% else %}
+                <a href="/login/" class="btn btn-primary">Login<a>
+              {% endif %}
+              </p>
+            </ul>
+          </div><!--/.well -->
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
               <li class="nav-header">Mi Carrito</li>
               <br><p align="justify">
               	Carrito de Super
@@ -86,7 +99,7 @@
       </div><!--/row-->
       <hr>
       <footer>
-        <p>&copy; Open Project 2013 </p> 
+        <p>&copy; Open Project 2013. Versión Django: {{django_version}}</p> 
       </footer>
     </div><!--/.fluid-container-->
     <!-- Le javascript
