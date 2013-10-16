@@ -5,15 +5,17 @@ from demo.apps.home.forms import ContactForm, LoginForm,RegisterForm
 from django.core.mail import EmailMultiAlternatives # Enviamos HTML
 from django.contrib.auth.models import User
 import django
-
+from demo.settings import URL_LOGIN
 from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponseRedirect
 # Paginacion en Django
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
+from django.contrib.auth.decorators import login_required
 
 def index_view(request):
 	return render_to_response('home/index.html',context_instance=RequestContext(request))
 
+@login_required(login_url=URL_LOGIN)
 def about_view(request):
 	version = django.get_version()
 	mensaje = "Esto es un mensaje desde mi vista"
@@ -40,7 +42,7 @@ def singleProduct_view(request,id_prod):
 	ctx = {'producto':prod,'categorias':cats}
 	return render_to_response('home/SingleProducto.html',ctx,context_instance=RequestContext(request))
 
-
+@login_required(login_url=URL_LOGIN)
 def contacto_view(request):
 	info_enviado = False # Definir si se envio la informacion o no se envio
 	email = ""
@@ -74,16 +76,18 @@ def login_view(request):
 		if request.method == "POST":
 			form = LoginForm(request.POST)
 			if form.is_valid():
+				next = request.POST['next']
 				username = form.cleaned_data['username']
 				password = form.cleaned_data['password']
 				usuario = authenticate(username=username,password=password)
 				if usuario is not None and usuario.is_active:
 					login(request,usuario)
-					return HttpResponseRedirect('/')
+					return HttpResponseRedirect(next)
 				else:
 					mensaje = "usuario y/o password incorrecto"
+		next = request.REQUEST.get('next')
 		form = LoginForm()
-		ctx = {'form':form,'mensaje':mensaje}
+		ctx = {'form':form,'mensaje':mensaje,'next':next}
 		return render_to_response('home/login.html',ctx,context_instance=RequestContext(request))
 
 def logout_view(request):

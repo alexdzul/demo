@@ -197,7 +197,7 @@ EMAIL_HOST_PASSWORD = '*****'
 EMAIL_USE_TLS = True
 
 
-
+URL_LOGIN = '/login/'
 
 
 

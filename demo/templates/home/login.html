@@ -5,6 +5,11 @@
 	{% csrf_token %}
 	{{ mensaje }}
 	{{ form.as_p }}
+	{% if next %}
+		<input type="hidden" value="{{next}}" name="next">
+	{% else %}
+		<input type="hidden" value="/" name="next">
+	{% endif %}
 	<button class="btn btn-primary" type="submit"> Login </button>
 	<h5>Registrarte <a href="/registro/">aquí</a></h5>
 </form>
