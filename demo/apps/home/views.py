@@ -7,10 +7,11 @@ from django.contrib.auth.models import User
 import django
 from demo.settings import URL_LOGIN
 from django.contrib.auth import login,logout,authenticate
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 # Paginacion en Django
 from django.core.paginator import Paginator,EmptyPage,InvalidPage
 from django.contrib.auth.decorators import login_required
+import simplejson
 
 def index_view(request):
 	return render_to_response('home/index.html',context_instance=RequestContext(request))
@@ -23,6 +24,17 @@ def about_view(request):
 	return render_to_response('home/about.html',ctx,context_instance=RequestContext(request))
 
 def productos_view(request,pagina):
+	if request.method=="POST":
+		if "product_id" in request.POST:
+			try:
+				id_producto = request.POST['product_id']
+				p = producto.objects.get(pk=id_producto)
+				mensaje = {"status":"True","product_id":p.id}
+				p.delete() # Elinamos objeto de la base de datos
+				return HttpResponse(simplejson.dumps(mensaje),mimetype='application/json')
+			except:
+				mensae = {"status":"False"}
+				return HttpResponse(simplejson.dumps(mensaje),mimetype='application/json')
 	lista_prod = producto.objects.filter(status=True) # Select * from ventas_productos where status = True
 	paginator = Paginator(lista_prod,5) # Cuantos productos quieres por pagina? = 3
 	try:

@@ -1,13 +1,36 @@
 {% extends 'base.html' %}
 {% block title %} Lista de Productos {% endblock %}
 {%block content %}
+
+
+<!--IniciaModal-->
+ <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+    <h3 id="myModalLabel">Eliminar Producto</h3>
+    </div>
+    <div class="modal-body">
+    <p>¿Realmente desea eliminar el producto <span id="modal_name"></span>?</p>
+    </div>
+    <div class="modal-footer">
+        <form method="post" id="frmEliminar">
+            {% csrf_token %}
+            <input type="hidden" id="modal_idProducto" name="product_id">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </div>
+</div>
+<!--EndModal-->
+
+
+
 <h3>Catalogo de Productos:</h3>
 {% if user.is_authenticated %}
 <a href="{% url "vista_agregar_producto" %}" class="btn"><i class="icon-plus"></i> Nuevo</a><br>
 {% endif %}
 <br>
 {% if productos %}
-    <table class="table table-hover">
+    <table class="table table-hover" id="tabla_productos">
     	<thead>
                 <tr>
                   <th>Producto</th>
@@ -17,7 +40,7 @@
         </thead>
     {% for p in productos %}
      	<tbody>
-     		<tr>
+     		<tr id="tr{{p.id}}">
 				<td>{{ p.nombre }}</td>
 				<td>{{ p.precio }}</td>
 				<td>{{ p.stock }}</td>
@@ -25,6 +48,7 @@
 				<td><a class="btn" href="#"><i class="icon-shopping-cart"></i> Comprar</a></td>
 				{% if user.is_authenticated and user.is_staff %}
 					<td><a class="btn" href="/edit/producto/{{p.id}}/"><i class="icon-pencil"></i>  Editar </a></td>
+					<td><a href="#myModal" role="button" class="btn btn-danger delete" data-toggle="modal" id="{{p.id}}" data-name="{{p.nombre}}"><i class="icon-trash icon-white"></i>Eliminar</a></td>
 				{% endif %}				
 			</tr>
 		</tbody>
